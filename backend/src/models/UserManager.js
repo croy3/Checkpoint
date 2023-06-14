@@ -14,11 +14,11 @@ class UserManager extends AbstractManager {
     );
   }
 
-  update({ id, login, password }) {
-    return this.database.query(
-      `update ${this.table} set login = ?, password = ? where id = ?`,
-      [login, password, id]
-    );
+  update(user) {
+    return this.database.query(`update ${this.table} set ? where id = ?`, [
+      user,
+      user.id,
+    ]);
   }
 }
 
