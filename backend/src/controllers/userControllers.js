@@ -1,5 +1,7 @@
 const models = require("../models");
 
+const userValidator = require("../services/validators/userValidator");
+
 const browse = (req, res) => {
   models.user
     .findAll()
@@ -31,7 +33,8 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const user = req.body;
 
-  // TODO validations (length, format...)
+  const error = userValidator(user, false);
+  if (error) res.sendStatus(422);
 
   user.id = parseInt(req.params.id, 10);
 
@@ -53,7 +56,8 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const user = req.body;
 
-  // TODO validations (length, format...)
+  const error = userValidator(user);
+  if (error) res.sendStatus(422);
 
   models.user
     .insert(user)

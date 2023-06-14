@@ -1,4 +1,5 @@
 const models = require("../models");
+const projectValidator = require("../services/validators/projectValidator");
 
 const browse = (req, res) => {
   models.project
@@ -31,7 +32,8 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const project = req.body;
 
-  // TODO validations (length, format...)
+  const error = projectValidator(project, false);
+  if (error) res.sendStatus(422);
 
   project.id = parseInt(req.params.id, 10);
 
@@ -53,7 +55,8 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const project = req.body;
 
-  // TODO validations (length, format...)
+  const error = projectValidator(project);
+  if (error) res.sendStatus(422);
 
   models.project
     .insert(project)
