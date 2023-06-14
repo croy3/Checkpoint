@@ -2,11 +2,13 @@ const models = require("../models");
 
 const userValidator = require("../services/validators/userValidator");
 
+const { hashPassword } = require("../services/auth");
+
 const browse = (req, res) => {
   models.user
     .findAll()
     .then(([rows]) => {
-      res.send(rows);
+      res.send(rows.map((user) => ({ id: user.id, login: user.login })));
     })
     .catch((err) => {
       console.error(err);
@@ -21,7 +23,7 @@ const read = (req, res) => {
       if (rows[0] == null) {
         res.sendStatus(404);
       } else {
-        res.send(rows[0]);
+        res.send({ id: rows[0].id, login: rows[0].login });
       }
     })
     .catch((err) => {
@@ -30,13 +32,15 @@ const read = (req, res) => {
     });
 };
 
-const edit = (req, res) => {
+const edit = async (req, res) => {
   const user = req.body;
 
   const error = userValidator(user, false);
   if (error) res.sendStatus(422);
 
   user.id = parseInt(req.params.id, 10);
+
+  if (user.password) user.password = await hashPassword(user.password);
 
   models.user
     .update(user)
@@ -53,11 +57,13 @@ const edit = (req, res) => {
     });
 };
 
-const add = (req, res) => {
+const add = async (req, res) => {
   const user = req.body;
 
   const error = userValidator(user);
   if (error) res.sendStatus(422);
+
+  user.password = await hashPassword(user.password);
 
   models.user
     .insert(user)
@@ -86,10 +92,28 @@ const destroy = (req, res) => {
     });
 };
 
+const getUserByLoginToNext = async (req, res, next) => {
+  const { login } = req.body;
+  if (!login) res.sendStatus(422);
+  models.user
+    .getUserByLogin(login)
+    .then(([result]) => {
+      if (result[0] != null) {
+        [req.user] = result;
+        next();
+      } else res.sendStatus(401);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  getUserByLoginToNext,
 };
