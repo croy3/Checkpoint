@@ -1,0 +1,32 @@
+.project-box {
+	background-color: #A3B18A;
+	color: #344E41;
+	border-radius: 5px;
+	display: flex;
+	width: 30%;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 10px;
+}
+
+.project-box img {
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	border-radius: 2px;
+}
+
+.project-box a {
+	width: 100%;
+}
+
+.access-button {
+	width: 80%;
+	padding: 5px;
+}
+
+@media screen and (max-width: 600px) {
+	.project-box {
+		width: 80%;
+	}
+}
