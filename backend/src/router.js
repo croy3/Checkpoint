@@ -29,7 +29,7 @@ router.post(
   "/image",
   verifyToken,
   upload.single("image"),
-  imageHelpers.renameImageAndSendFileName
+  imageHelpers.renameImageAndSendFilename
 );
 
 module.exports = router;

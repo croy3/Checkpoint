@@ -1,0 +1,17 @@
+.admin {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.admin-rows {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	width: 80%;
+}
+
+.logout-button {
+	margin: auto;
+	width: 150px;
+}

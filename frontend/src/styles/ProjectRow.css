@@ -1,0 +1,22 @@
+.project-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #588157;
+	border-radius: 5px;
+	padding: 10px 30px;
+}
+
+.project-row p {
+	font-size: 2em;
+}
+
+.project-row button {
+	font-size: 1.3em;
+}
+
+@media screen and (max-width: 600px) {
+	.project-row {
+		flex-direction: column;
+	}
+}

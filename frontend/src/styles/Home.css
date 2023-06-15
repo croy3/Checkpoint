@@ -1,0 +1,154 @@
+.home {
+  text-align: center;
+	width: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 250px;
+	width: 100%;
+	background-image: url("../assets/banner.jpeg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	gap: 0;
+}
+
+header h1 {
+	font-size: 3em;
+}
+
+header h3 {
+	font-size: 1.8em;
+}
+
+.home-container {
+	width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 70px;
+	background-color: #3A5A40;
+	border-radius: 20px;
+	margin: 60px auto;
+	padding: 20px;
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 35px;
+	font-size: 1.5em;
+}
+
+.about-paragraphs {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 100px;
+}
+
+.about-paragraphs div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 100px;
+	width: 30vw;
+}
+
+.projects {
+	width: 100%
+}
+
+.projects-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 35px;
+	width: 100%;
+}
+
+.contact {
+	width: 100%;
+}
+
+.contact-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.contact-container ul {
+	display: flex;
+	flex-direction: column;
+	width: 30vw;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.contact-container form {
+	background-color: #A3B18A;
+	color: #3A5A40;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	width: 30vw;
+	padding: 25px;
+}
+
+.contact-container form label input,
+.contact-container form label textarea  {
+	width: 100%;
+}
+
+.contact-container form label textarea {
+	resize: none;
+	height: 200px;
+}
+
+.contact-container form label p {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+	.projects-list {
+		flex-direction: column;
+		flex-wrap: nowrap;
+		gap: 35px;
+	}
+
+	.about-paragraphs {
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.about-paragraphs div {
+		width: 100%;
+	}
+
+	.contact-container {
+		flex-direction: column;
+	}
+
+	.contact-container ul {
+		width: 100%;
+		padding: 0;
+	}
+
+	.contact-container form {
+		width: 80%;
+	}
+}
